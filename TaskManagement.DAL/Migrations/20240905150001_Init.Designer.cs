@@ -12,7 +12,7 @@ using TaskManagement.DAL;
 namespace TaskManagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240904165739_Init")]
+    [Migration("20240905150001_Init")]
     partial class Init
     {
         /// <inheritdoc />

@@ -9,11 +9,10 @@ namespace TaskManagement.BL
     {
         public AutoMapperProfile()
         {
-            CreateMap<User, UserLoginDTO>().ReverseMap();
-            CreateMap<User, UserRegisterDTO>().ReverseMap();
+            CreateMap<User, UserLoginDto>().ReverseMap();
+            CreateMap<User, UserRegisterDto>().ReverseMap();
 
             CreateMap<Domain.Models.Task, TaskDTO>().ReverseMap();
-            CreateMap<Domain.Models.Task, TaskDetailsDTO>().ReverseMap();
         }
     }
 }

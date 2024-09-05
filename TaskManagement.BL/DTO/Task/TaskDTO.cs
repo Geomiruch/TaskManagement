@@ -9,8 +9,7 @@ namespace TaskManagement.BL.DTO.Task
         public DateTime DueDate { get; set; }
         public Status Status { get; set; }
         public Priority Priority { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-        public Guid? UserId { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

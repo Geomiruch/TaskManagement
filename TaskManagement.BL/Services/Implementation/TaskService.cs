@@ -18,7 +18,7 @@ namespace TaskManagement.BL.Services.Implementation
             _logger = logger;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<TaskDTO>> GetTasksAsync(TaskFilterDTO taskFilter)
+        public async Task<TasksPaginatedDTO> GetTasksAsync(TaskFilterDTO taskFilter, int page, int pageSize)
         {
             var tasks = await _taskRepository.GetFilteredTasksAsync(taskFilter.UserId, taskFilter.Status, taskFilter.DueDate, taskFilter.Priority);
             var tasksDTO = tasks.Select(_mapper.Map<TaskDTO>);
@@ -36,7 +36,23 @@ namespace TaskManagement.BL.Services.Implementation
                 if (taskFilter.PriorityOrder == SortOrder.Descending)
                     tasksDTO.OrderByDescending(x => x.Priority);
             }
-            return tasksDTO;
+
+            var totalItems = tasksDTO.Count();
+            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            var paginatedTasks = tasksDTO
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return new TasksPaginatedDTO
+            {
+                Tasks = paginatedTasks,
+                Page = page,
+                PageSize = pageSize,
+                TotalTasks = totalItems,
+                TotalPages = totalPages
+            };
         }
 
         public async Task<Domain.Models.Task?> GetTaskByIdAsync(Guid taskId, Guid userId)
@@ -45,14 +61,17 @@ namespace TaskManagement.BL.Services.Implementation
             return task?.UserId == userId ? task : null;
         }
 
-        public async Task<Domain.Models.Task> CreateTaskAsync(TaskDTO taskDTO)
+        public async Task<Domain.Models.Task> CreateTaskAsync(TaskDTO taskDTO, Guid userId)
         {
             var task = _mapper.Map<Domain.Models.Task>(taskDTO);
+            task.CreatedAt = DateTime.UtcNow;
+            task.UpdatedAt = DateTime.UtcNow;
+            task.UserId = userId;
 
             await _taskRepository.AddAsync(task);
             await _taskRepository.SaveChangesAsync();
 
-            _logger.LogInformation("Task {Title} created by user {UserId}", taskDTO.Title, taskDTO.UserId);
+            _logger.LogInformation("Task {Title} created by user {UserId}", taskDTO.Title, userId);
             return task;
         }
 

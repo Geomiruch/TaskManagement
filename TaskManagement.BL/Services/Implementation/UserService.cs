@@ -36,7 +36,9 @@ namespace TaskManagement.BL.Services.Implementation
             {
                 UserName = username,
                 Email = email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(password)
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(password),
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow,
             };
 
             await _userRepository.AddAsync(user);
