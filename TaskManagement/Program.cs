@@ -1,5 +1,7 @@
 using System.Text.Json.Serialization;
 using TaskManagement.BL;
+using TaskManagement.DAL.Repositories.Implementation;
+using TaskManagement.DAL.Repositories;
 
 namespace TaskManagement
 {
@@ -17,6 +19,9 @@ namespace TaskManagement
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
             builder.Services.RegisterDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 
