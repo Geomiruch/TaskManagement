@@ -1,4 +1,5 @@
-﻿using TaskManagement.Domain.Models.Enums;
+﻿using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+using TaskManagement.Domain.Models.Enums;
 
 namespace TaskManagement.DAL.Repositories
 {

@@ -1,12 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using TaskManagement.Domain.Models.Enums;
+﻿using TaskManagement.Domain.Models.Enums;
 
-namespace TaskManagement.Domain.Models
+namespace TaskManagement.BL.DTO.Task
 {
-    public class Task
+    public class TaskDTO
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime DueDate { get; set; }
@@ -14,7 +11,6 @@ namespace TaskManagement.Domain.Models
         public Priority Priority { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
-        public Guid UserId { get; set; }
-        public User User { get; set; }
+        public Guid? UserId { get; set; }
     }
 }

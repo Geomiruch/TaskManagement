@@ -23,6 +23,8 @@ namespace TaskManagement
             builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 
+            builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
+
             builder.Services.RegisterDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 
             builder.Services.AddControllers().AddJsonOptions(opt =>

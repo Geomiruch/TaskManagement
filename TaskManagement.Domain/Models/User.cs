@@ -1,7 +1,10 @@
-﻿namespace TaskManagement.Domain.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace TaskManagement.Domain.Models
 {
     public class User
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public string UserName { get; set; }
         public string Email { get; set; }
