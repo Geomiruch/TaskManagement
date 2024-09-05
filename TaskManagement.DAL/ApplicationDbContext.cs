@@ -2,7 +2,7 @@
 using TaskManagement.Domain.Models;
 using Task = TaskManagement.Domain.Models.Task;
 
-namespace TaskManagement
+namespace TaskManagement.DAL
 {
     public class ApplicationDbContext : DbContext
     {

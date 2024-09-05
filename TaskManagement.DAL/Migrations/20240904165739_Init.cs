@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TaskManagement.Migrations
+namespace TaskManagement.DAL.Migrations
 {
     /// <inheritdoc />
     public partial class Init : Migration

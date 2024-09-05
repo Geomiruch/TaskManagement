@@ -1,6 +1,5 @@
-
-using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using TaskManagement.BL;
 
 namespace TaskManagement
 {
@@ -19,7 +18,7 @@ namespace TaskManagement
 
             builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
-            builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.RegisterDbContext(builder.Configuration.GetConnectionString("DefaultConnection"));
 
             builder.Services.AddControllers().AddJsonOptions(opt =>
             {

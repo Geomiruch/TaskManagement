@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TaskManagement;
+using TaskManagement.DAL;
 
 #nullable disable
 
-namespace TaskManagement.Migrations
+namespace TaskManagement.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240904160538_Init")]
+    [Migration("20240904165739_Init")]
     partial class Init
     {
         /// <inheritdoc />
